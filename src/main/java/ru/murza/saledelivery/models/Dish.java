@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
+@Entity(name = "Dish")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Dish")
+@Table(name = "dish")
 public class Dish {
 
     @Id

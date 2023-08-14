@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
+@Entity(name = "Store")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Store")
+@Table(name = "store")
 public class Store {
 
     @Id
@@ -32,7 +32,7 @@ public class Store {
 
     @ManyToMany
     @JoinTable(
-            name = "Store_Dish",
+            name = "store_dish",
             joinColumns = @JoinColumn(name = "store_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )

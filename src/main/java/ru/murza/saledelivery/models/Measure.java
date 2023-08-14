@@ -6,11 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "Measure")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Measure")
+@Table(name = "measure")
 public class Measure {
 
     @Id
@@ -22,6 +22,4 @@ public class Measure {
     @NotNull(message = "Not empty!")
     private String type;
 
-    @OneToOne
-    private Ingredient ingredient;
 }

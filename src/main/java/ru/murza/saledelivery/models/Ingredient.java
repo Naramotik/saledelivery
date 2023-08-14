@@ -6,11 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "Ingredient")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Ingredient")
+@Table(name = "ingredient")
 public class Ingredient {
 
     @Id
@@ -25,4 +25,7 @@ public class Ingredient {
     @ManyToOne
     @JoinColumn(name = "composition_id")
     private Composition composition;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    private Measure measure;
 }

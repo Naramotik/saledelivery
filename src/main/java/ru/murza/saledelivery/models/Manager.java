@@ -6,11 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "Manager")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Manager")
+@Table(name = "manager")
 public class Manager {
 
     @Id

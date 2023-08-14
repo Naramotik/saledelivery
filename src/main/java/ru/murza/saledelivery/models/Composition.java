@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Composition")
+@Entity(name = "Composition")
+@Table(name = "composition")
 public class Composition {
 
     @Id
