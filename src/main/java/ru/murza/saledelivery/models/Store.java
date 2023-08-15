@@ -25,7 +25,6 @@ public class Store {
     @NotNull(message = "Not empty!")
     private String address;
 
-
     @OneToMany(mappedBy = "store")
     private List<Order> orders;
 
@@ -36,4 +35,7 @@ public class Store {
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
     private List<Dish> dishes;
+
+//    @OneToMany(mappedBy = "store")
+//    private List<ManagerInfo> managerInfos;
 }

@@ -1,19 +1,19 @@
 package ru.murza.saledelivery.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-public class ManagerInfo {
+public class ManagerInfo implements Serializable {
 
     @Column(name = "second_name")
     private String secondName;
@@ -24,6 +24,10 @@ public class ManagerInfo {
     @Length(max = 12)
     @Column(name = "itn", length = 12)
     private String itn;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 
     @Override
     public boolean equals(Object o) {

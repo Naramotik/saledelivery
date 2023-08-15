@@ -1,15 +1,11 @@
 package ru.murza.saledelivery.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import ru.murza.saledelivery.models.Client;
-import ru.murza.saledelivery.models.ManagerInfo;
 import ru.murza.saledelivery.models.Roles;
 import ru.murza.saledelivery.repository.ClientRepository;
-import ru.murza.saledelivery.repository.RolesRepository;
 
-import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -27,12 +23,13 @@ public class ClientService {
     }
 
     public Client updateToManager(Long clientId, Client clientWithManagerInfo){
-        Roles managerRole = rolesService.getRole("ROLE_MANAGER");
         Client client = patcher(clientId, clientWithManagerInfo);
         client.setManagerInfo(clientWithManagerInfo.getManagerInfo());
+        Roles managerRole = rolesService.getRole("ROLE_MANAGER");
         client.setRole(managerRole);
         return clientRepository.save(client);
     }
+
 
     public Client updateClient(Long clientId, Client patch){
         return clientRepository.save(patcher(clientId, patch));
@@ -45,7 +42,7 @@ public class ClientService {
 
 
     public Client patcher(Long clientId, Client patch){
-        Client client = clientRepository.findById(clientId).get();
+        Client client = clientRepository.findById(clientId).get();                                      //TODO EXCEPTION   TODO EXCEPTION   TODO EXCEPTION
 
         if (patch.getName() != null && !patch.getName().equals(client.getName()))
             client.setName(patch.getName());
