@@ -21,7 +21,8 @@ public class Composition {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "count")
+    @Column(name = "count",
+            nullable = false)
     @NotNull(message = "Not empty!")
     private Double count;
 

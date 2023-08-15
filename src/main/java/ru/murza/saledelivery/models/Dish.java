@@ -20,7 +20,8 @@ public class Dish {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "cost")
+    @Column(name = "cost",
+            nullable = false)
     @NotNull(message = "Not empty!")
     private Double cost;
 

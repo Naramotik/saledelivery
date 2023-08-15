@@ -18,7 +18,8 @@ public class Measure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "type")
+    @Column(name = "type",
+            nullable = false)
     @NotNull(message = "Not empty!")
     private String type;
 

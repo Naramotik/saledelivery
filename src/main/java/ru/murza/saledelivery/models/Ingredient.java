@@ -18,7 +18,8 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "title",
+            nullable = false)
     @NotNull(message = "Not empty!")
     private String title;
 

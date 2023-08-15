@@ -20,12 +20,11 @@ public class Store {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "address")
+    @Column(name = "address",
+            nullable = false)
     @NotNull(message = "Not empty!")
     private String address;
 
-    @OneToMany(mappedBy = "store")
-    private List<Manager> managers;
 
     @OneToMany(mappedBy = "store")
     private List<Order> orders;

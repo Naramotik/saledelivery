@@ -1,32 +1,35 @@
 package ru.murza.saledelivery.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "Manager")
+import java.util.List;
+
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "manager")
-public class Manager {
+@Table(name = "roles")
+public class Roles {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
     @NotNull(message = "Not empty!")
-    private String name;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "number")
-    @NotNull(message = "Not empty!")
-    private String number;
+    @OneToMany(mappedBy = "role")
+    private List<Client> clients;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
+    @Override
+    public String toString() {
+        return title;
+    }
 }
