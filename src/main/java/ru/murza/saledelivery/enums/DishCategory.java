@@ -8,5 +8,7 @@ public enum DishCategory {
 
     SWEET,
 
-    BEVERAGES
+    BEVERAGES,
+
+    OTHER
 }

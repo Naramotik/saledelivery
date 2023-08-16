@@ -1,11 +1,11 @@
 package ru.murza.saledelivery.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.murza.saledelivery.enums.DishCategory;
 
 import java.util.List;
 
@@ -34,4 +34,7 @@ public class Dish {
 
     @ManyToMany(mappedBy = "dishes")
     private List<Order> orders;
+
+    @Enumerated(EnumType.STRING)
+    private DishCategory dishCategory;
 }

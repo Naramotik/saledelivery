@@ -35,4 +35,6 @@ public class Composition {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredients;
+
+
 }
