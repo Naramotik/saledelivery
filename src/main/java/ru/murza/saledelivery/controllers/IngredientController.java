@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.murza.saledelivery.dto.IngredientDTO;
 import ru.murza.saledelivery.models.Ingredient;
 import ru.murza.saledelivery.service.IngredientService;
+import ru.murza.saledelivery.util.Mapper;
 
 import java.util.List;
 
@@ -17,13 +19,19 @@ public class IngredientController {
     private IngredientService ingredientService;
 
     @GetMapping
-    public ResponseEntity<List<Ingredient>> findAll(){
-        return new ResponseEntity<>(ingredientService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<IngredientDTO>> findAll(){
+        List<IngredientDTO> ingredientDTOList = ingredientService.findAll()
+                .stream()
+                .map(ingredient -> Mapper.modelMapper.map(ingredient, IngredientDTO.class))
+                .toList();
+        return new ResponseEntity<>(ingredientDTOList, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Ingredient> save(@RequestBody Ingredient ingredient){
-        return new ResponseEntity<>(ingredientService.save(ingredient), HttpStatus.CREATED);
+    public ResponseEntity<IngredientDTO> save(@RequestBody Ingredient ingredient){
+        Ingredient savedIngredient = ingredientService.save(ingredient);
+        IngredientDTO outIngredientDTO = Mapper.modelMapper.map(savedIngredient, IngredientDTO.class);
+        return new ResponseEntity<>(outIngredientDTO, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/ingredientId")

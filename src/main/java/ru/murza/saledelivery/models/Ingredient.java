@@ -30,9 +30,7 @@ public class Ingredient {
     @NotNull(message = "Not empty!")
     private String title;
 
-    @OneToMany(
-            mappedBy = "ingredients"
-    )
+    @OneToMany(mappedBy = "ingredients")
     private List<Composition> composition;
 
     @ManyToOne(fetch = FetchType.EAGER)

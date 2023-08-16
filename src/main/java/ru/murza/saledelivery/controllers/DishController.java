@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.murza.saledelivery.dto.DishDTO;
 import ru.murza.saledelivery.models.Dish;
 import ru.murza.saledelivery.service.DishService;
+import ru.murza.saledelivery.util.Mapper;
 
 
 import java.util.List;
@@ -18,13 +20,18 @@ public class DishController {
     private DishService dishService;
 
     @GetMapping
-    public ResponseEntity<List<Dish>> findAll(){
-        return new ResponseEntity<>(dishService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<DishDTO>> findAll(){
+        List<DishDTO> dishDTO = dishService.findAll()
+                .stream()
+                .map(dish -> Mapper.modelMapper.map(dish, DishDTO.class))
+                .toList();
+        return new ResponseEntity<>(dishDTO, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Dish> save(@RequestBody Dish dish){
-        return new ResponseEntity<>(dishService.save(dish), HttpStatus.CREATED);
+    public ResponseEntity<DishDTO> save(@RequestBody Dish dish){
+        DishDTO dishDTO = Mapper.modelMapper.map(dishService.save(dish), DishDTO.class);
+        return new ResponseEntity<>(dishDTO, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/dishId")

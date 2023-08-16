@@ -1,7 +1,5 @@
 package ru.murza.saledelivery.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -22,11 +20,13 @@ public class Measure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "type",
-            nullable = false)
+    @Column(
+            name = "type",
+            nullable = false
+    )
     @NotNull(message = "Not empty!")
     private String type;
 
-    @OneToMany(mappedBy = "measure", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "measure")
     private List<Ingredient> ingredients;
 }
