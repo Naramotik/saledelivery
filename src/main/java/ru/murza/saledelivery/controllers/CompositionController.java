@@ -22,7 +22,7 @@ public class CompositionController {
     }
 
     @PostMapping
-    public ResponseEntity<Composition> save(Composition composition){
+    public ResponseEntity<Composition> save(@RequestBody Composition composition){
         return new ResponseEntity<>(compositionService.save(composition), HttpStatus.CREATED);
     }
 

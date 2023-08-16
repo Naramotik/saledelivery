@@ -22,6 +22,7 @@ public class CompositionService {
     }
 
     public Composition save(Composition composition){
+        System.out.println(composition.getIngredients());
         return compositionRepository.save(composition);
     }
 

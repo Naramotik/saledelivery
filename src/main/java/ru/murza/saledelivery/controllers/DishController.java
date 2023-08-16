@@ -23,7 +23,7 @@ public class DishController {
     }
 
     @PostMapping
-    public ResponseEntity<Dish> save(Dish dish){
+    public ResponseEntity<Dish> save(@RequestBody Dish dish){
         return new ResponseEntity<>(dishService.save(dish), HttpStatus.CREATED);
     }
 

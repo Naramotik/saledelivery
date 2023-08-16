@@ -1,5 +1,7 @@
 package ru.murza.saledelivery.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -30,6 +32,7 @@ public class Composition {
     @JoinColumn(name = "dish_id")
     private Dish dish;
 
-    @OneToMany(mappedBy = "composition")
-    private List<Ingredient> ingredients;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ingredient_id")
+    private Ingredient ingredients;
 }

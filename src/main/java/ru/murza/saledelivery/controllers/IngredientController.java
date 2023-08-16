@@ -22,7 +22,7 @@ public class IngredientController {
     }
 
     @PostMapping
-    public ResponseEntity<Ingredient> save(Ingredient ingredient){
+    public ResponseEntity<Ingredient> save(@RequestBody Ingredient ingredient){
         return new ResponseEntity<>(ingredientService.save(ingredient), HttpStatus.CREATED);
     }
 

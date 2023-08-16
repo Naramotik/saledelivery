@@ -1,10 +1,15 @@
 package ru.murza.saledelivery.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity(name = "Ingredient")
 @Data
@@ -18,15 +23,19 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title",
-            nullable = false)
+    @Column(
+            name = "title",
+            nullable = false
+    )
     @NotNull(message = "Not empty!")
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "composition_id")
-    private Composition composition;
+    @OneToMany(
+            mappedBy = "ingredients"
+    )
+    private List<Composition> composition;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "measure_id")
     private Measure measure;
 }

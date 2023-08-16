@@ -46,11 +46,11 @@ public class Client {
     })
     private ManagerInfo managerInfo;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "client")
     private List<Order> orders;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Roles role;

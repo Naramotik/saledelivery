@@ -7,12 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.murza.saledelivery.models.Client;
-import ru.murza.saledelivery.models.ManagerInfo;
 import ru.murza.saledelivery.service.ClientService;
 
 @RestController
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/client")
+public class ClientController {
 
     @Autowired
     private ClientService clientService;
@@ -27,17 +26,15 @@ public class CustomerController {
 //        return clientService.getCustomer().get();
 //    }
 
-    @PatchMapping("/{clientId}")
-    public ResponseEntity<Client> updateClient(@PathVariable("clientId") Long clientId,
-                                               @RequestBody Client patch){
-        return new ResponseEntity<>(clientService.updateClient(clientId, patch), HttpStatus.OK);
-    }
-
     @PutMapping("/{clientId}")
     public ResponseEntity<Client> updateToManager(@PathVariable("clientId") Long clientId,
                                                   @RequestBody Client clientWithManagerInfo){
         return new ResponseEntity<>(clientService.updateToManager(clientId, clientWithManagerInfo), HttpStatus.OK);
     }
 
-
+    @PatchMapping("/{clientId}")
+    public ResponseEntity<Client> updateClient(@PathVariable("clientId") Long clientId,
+                                               @RequestBody Client patch){
+        return new ResponseEntity<>(clientService.updateClient(clientId, patch), HttpStatus.OK);
+    }
 }
